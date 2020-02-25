@@ -460,10 +460,28 @@ module Main = {
         {switch (state.dataType, state.cdfType) {
          | ("FLOAT_CDF_AND_POINT", "CDF")
          | ("FLOAT_CDF", _) when E.A.length(state.floatCdf.xs) > 1 =>
-           <ForetoldComponents.CdfChart__Large
-             cdf={state.floatCdf}
-             width={Some(0)}
-           />
+         {
+          <table width={"100%"} height={"400px"}>
+            <tbody>
+              <tr>
+                <td>
+                  <ForetoldComponents.CdfChart__Large
+                  cdf={state.floatCdf}
+                  width={Some(0)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <MeasurementStatisticsBelowChart
+                  cdf={state.floatCdf}
+                  measurable={measurable}
+                  /> 
+                </td>
+              </tr>
+            </tbody>
+          </table>;
+         }
 
          | _ => <Null />
          }}
